@@ -7,8 +7,8 @@ from Clasificador_Arboles import *
 from Red_Neuronal import *
 
 
-#importo otra page
-st.set_option('deprecation.showfileUploaderEncoding', False)
+
+#st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('PROYECTO 2 - Machine Learning')
 
 st.subheader('Christian Alessander Blanco González - 202000173')
@@ -16,7 +16,6 @@ uploaded_file = st.file_uploader(label = "Cargue sus archivos:",type=['csv','xls
 
 df = ""
 if uploaded_file is not None:
-  #si no es nullo
   print(uploaded_file)
   print(uploaded_file.type)
   print('hello')
@@ -29,8 +28,6 @@ if uploaded_file is not None:
     if uploaded_file.type == 'application/vnd.ms-excel':
       print('xls')
       st.text("xls")
-      #instalar una libreria para reconocer xls
-      #pip install xlrd
       df = pd.read_excel(uploaded_file)
     if uploaded_file.type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
       print("xlsx")

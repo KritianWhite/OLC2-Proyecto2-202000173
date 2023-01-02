@@ -7,7 +7,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 
 def RL(_info):
-    #print("-----------> regresion lineal")
     st.title('Regresion lineal')
     st.subheader('Visualización del archivo:')
     st.write(_info)
@@ -20,7 +19,7 @@ def RL(_info):
         paramy = st.text_input('Ingrese parametro Y','')
     #st.write(paramy)
 
-    #inicio de la regresion lineal
+    # Procedimientos para regresion lineal
     x = np.asarray(_info[paramx]).reshape(-1,1)
     y = _info[paramy]
     
@@ -65,7 +64,7 @@ def RL(_info):
         ax2.scatter(x,y, color='black')
         st.pyplot(fig2)
 
-#aproximacion
+    # Aproximacion
     c1,c2,c3 = st.columns(3)
     with c2:
         #print(texto)

@@ -52,7 +52,7 @@ def RL(_info):
     st.subheader('Tabla de resultados')
     texto = str(round(regr.coef_[0],2))+"X+"+str(round(regr.intercept_,2))
     print("Ecuacion ",texto)
-    d = {'Coeficiente de regresion': [regresion], 'Error cuadratico':[mean_squared_error(y,y_pred)], 'Coeficinte de determinacion':[r2_score(y,y_pred)],'Ecuacion lineal Ax + B':texto}
+    d = {'Coeficiente de regresion': [regresion], 'Error cuadratico':[mean_squared_error(y,y_pred)],'Predicción': y_pred[y_pred.size-1], 'Coeficinte de determinacion':[r2_score(y,y_pred)],'Ecuacion lineal Ax + B':texto}
     dresult = pd.DataFrame(data=d)
     st.dataframe(dresult)
 

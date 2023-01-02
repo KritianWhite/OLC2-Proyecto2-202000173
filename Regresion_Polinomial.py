@@ -9,15 +9,15 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 def RPol(_info):
     st.title("Regresion Polinomial")
-    st.subheader('Informacion')
+    st.subheader('Visualizacion del archivo:')
     st.write(_info)
-    st.subheader('Parametros')
+    st.subheader('Ingreso de parametros')
     col1,col2,col3 = st.columns(3)
     with col1:
-        paramx = st.text_input('Ingrese parametro X','NO')
+        paramx = st.text_input('Ingrese parametro X','')
     #st.write(paramx)
     with col2:
-        paramy = st.text_input('Ingrese parametro Y','A')
+        paramy = st.text_input('Ingrese parametro Y','')
     #st.write(paramy)
     with col3:
         grado = st.text_input('Ingrese el grado de la ecuacion','2')
@@ -38,29 +38,25 @@ def RPol(_info):
     #plot si se quiere
     #fig1, ax = plt.subplots()
     #ax.scatter(x,y)
- 
-    #---------------------Paso 2-------------------------------------------
-    #---------------------Preparacion de la informacion--------------------
+    
+    #TODO--> Paso1: Preparamos los datos del archivo
     nb_degree = int(grado)
     polinomial_feature = PolynomialFeatures(degree = nb_degree)
     X_TRANSF = polinomial_feature.fit_transform(x)
 
-    #---------------------Paso 3-------------------------------------------
-    #---------------------Definir y entrenar el modelo---------------------
+    #TODO--> Paso2: Definicio para la preparacion del modelo
     model = LinearRegression()
     model.fit(X_TRANSF,y)
-
-    #---------------------Paso 4-------------------------------------------
-    #---------------------Calcular bayesiana-------------------------------
+    
+    #TODO--> Paso3: Calculos de bayesiana
     Y_NEW = model.predict(X_TRANSF)
     
     rmse = np.sqrt(mean_squared_error(y,Y_NEW))
     r2 = r2_score(y, Y_NEW)
 
-    #---------------------Paso 5-------------------------------------------
-    #---------------------Prediccion---------------------------------------
+    #TODO--> Paso4: realización de prediccion
     x_new_min = 0.0
-    x_new_max = float(prediccion)  #para el calculo de la prediccion
+    x_new_max = float(prediccion)
 
     X_NEW = np.linspace(x_new_min,x_new_max,50)
     X_NEW = X_NEW[:,np.newaxis]
@@ -68,6 +64,7 @@ def RPol(_info):
     X_NEW_TRANSF = polinomial_feature.fit_transform(X_NEW)
     Y_NEW = model.predict(X_NEW_TRANSF)
 
+    st.subheader('Personalización de gráfico')
     color = st.select_slider(
      'Seleccione un color para la recta',
      options=['black','red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'])
@@ -84,10 +81,8 @@ def RPol(_info):
     plt.xlabel(paramx)
     plt.ylabel(paramy)
 
-    #---------------------Paso 6-----------------------------------------
-    #---------------------Impresion de resultados------------------------
-    
-    st.subheader('Resultados')
+    #TODO--> Paso5: Se imprimen los resultados generados
+    st.subheader('Tabla de resultados')
     ecuacion = ''
     coeficientes = model.coef_
     coeficientes = np.asarray(coeficientes)
@@ -110,12 +105,13 @@ def RPol(_info):
     dresult = pd.DataFrame(data = d)
     st.dataframe(dresult)
 
+    st.subheader('Graficos')
+    with st.expander("Ver grafica regresion polinomial"):
+        st.pyplot(fig)
+        
     with st.expander("Ver grafica de Puntos"):
         fig2,ax2 = plt.subplots()
         plt.grid()
         ax2.scatter(x,y, color='black')
         st.pyplot(fig2)
-
-    with st.expander("Ver grafica regresion polinomial"):
-        st.pyplot(fig)
     

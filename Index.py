@@ -46,7 +46,7 @@ option = st.selectbox(
      'Seleccione el tipo de algoritmo que desea:',
      ('Seleccione una opcion','Regresión lineal', 'Regresión polinomial', 'Clasificador Gaussiano','Clasificador de árboles de decisión','Redes neuronales'))
 
-st.write('Se seleccionó:', option)
+#st.write('Se seleccionó:', option)
 
 
 if option == 'Regresión lineal':

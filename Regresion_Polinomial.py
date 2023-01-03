@@ -24,7 +24,7 @@ def RPol(_info):
 
     co1,co2,co3 = st.columns(3)
     with co2:
-        prediccion = st.text_input('Ingrese valor para aproximar','100')
+        prediccion = st.text_input('Ingrese valor para aproximar','0')
 
     x = _info[paramx]
     y = _info[paramy]
@@ -34,10 +34,6 @@ def RPol(_info):
 
     x = x[:,np.newaxis]
     y = y[:,np.newaxis]
-
-    #plot si se quiere
-    #fig1, ax = plt.subplots()
-    #ax.scatter(x,y)
     
     #TODO--> Paso1: Preparamos los datos del archivo
     nb_degree = int(grado)
@@ -65,13 +61,12 @@ def RPol(_info):
     Y_NEW = model.predict(X_NEW_TRANSF)
 
     st.subheader('Personalización de gráfico')
-    color = st.select_slider(
-     'Seleccione un color para la recta',
-     options=['black','red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'])
-    color2 = st.select_slider(
-     'Seleccione un color para los puntos',
-     options=['black','red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'])
+    color = st.select_slider('Seleccione un color para la recta',
+                            options=['black','red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'])
+    color2 = st.select_slider('Seleccione un color para los puntos',
+                            options=['red','orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'])
     fig, ax = plt.subplots()
+    
     plt.plot(X_NEW, Y_NEW, color=color,linewidth=3)
     ax.scatter(X_NEW,Y_NEW, color =color2)
     plt.grid()

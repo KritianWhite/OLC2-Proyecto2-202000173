@@ -29,26 +29,22 @@ def RL(_info):
     y_pred = regr.predict(x)
     regresion = regr.coef_
 
-
-    #plt.scatter(x,y, color='black')
-    #plt.plot(x,y_pred, color='blue', linewidth=3)
-    #st.pyplot(plt.show())
-
     st.subheader('Personalización de gráfico')
     color = st.select_slider(
      'Seleccione un color para la recta',
      options=['black','red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'])
     color2 = st.select_slider(
      'Seleccione un color para los puntos',
-     options=['black','red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'])
+     options=['red','orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'])
     fig, ax = plt.subplots()
     ax.scatter(x,y, color=color2)
     ax.plot(x,y_pred,color = color)
-    plt.title('Regresion lineal\nCoeficiente de regresion: '+str(regresion))#,'  con un error cuadratico: ',mean_squared_error(y,y_pred))
+    plt.title('Regresion lineal\nCoeficiente de regresion: '+str(regresion))
     plt.xlabel(paramx)
     plt.ylabel(paramy)
     plt.grid()
     #st.pyplot(fig)
+    
     st.subheader('Tabla de resultados')
     texto = str(round(regr.coef_[0],2))+"X+"+str(round(regr.intercept_,2))
     print("Ecuacion ",texto)
@@ -69,7 +65,6 @@ def RL(_info):
     c1,c2,c3 = st.columns(3)
     with c2:
         #print(texto)
-        #st.subheader(texto)
         calcular = st.text_input('Valor para aproximacion','0')
         variable = regr.predict([[int(calcular)]])
         st.text(variable)

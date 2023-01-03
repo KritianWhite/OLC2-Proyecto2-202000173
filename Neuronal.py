@@ -33,9 +33,9 @@ import streamlit as st
 
 def RedNeuronal(_info):
     st.title('Redes neuronales')
-    st.subheader('Informacion')
+    st.subheader('Visualización del archivo')
     st.write(_info)
-    st.subheader('Parametrizacion de redes neuronales')
+    st.subheader('Ingreso de parametros')
     param = st.text_input('Ingrese parametro x:','')
     #unidadPre = st.text_input('Ingrese columna para predicción:','')
     
@@ -65,5 +65,5 @@ def RedNeuronal(_info):
     predi = mlr.score(VarX_train, VarY_train)
     print(predi)
     
-    st.subheader("Predicción de Tendencia")
+    st.subheader("Tendencia de predicción")
     st.success(predi)

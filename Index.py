@@ -4,7 +4,8 @@ from Regresion_Lineal import *
 from Regresion_Polinomial import *
 from Clasificador_Gaussiano import *
 from Clasificador_Arboles import *
-from Red_Neuronal import *
+#from Red_Neuronal import *
+from Neuronal import *
 
 #st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('PROYECTO 2 - Machine Learning')

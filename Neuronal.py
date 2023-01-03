@@ -67,10 +67,3 @@ def RedNeuronal(_info):
     
     st.subheader("Predicción de Tendencia")
     st.success(predi)
-    
-    
-    
-    
-
-
-

@@ -1,8 +1,8 @@
 FROM python:3.10.8
 
-WORKDIR /pythonDocker
+WORKDIR /Index
 
-COPY . .
+COPY requirements.txt ./requirements.txt
 
 RUN pip3 install -r requirements.txt
 
@@ -10,4 +10,6 @@ EXPOSE 8501
 
 COPY . /Index
 
-CMD ["streamlit", "run", "Index.py"]
+ENTRYPOINT ["streamlit", "run"]
+
+CMD ["Index.py"]

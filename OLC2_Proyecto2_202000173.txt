@@ -1,0 +1,5 @@
+GITHUB:
+https://github.com/KritianWhite/OLC2-Proyecto2-202000173
+
+DOCKER:
+docker run -p 8501:8501 -id kritianwhite/olc2-proyecto2-202000173:1.0
